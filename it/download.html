@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="robots" content="noindex">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calendario Mondiali 2026 - Guarda Tutte le Partite</title>
+  <meta name="description" content="Calendario completo dei Mondiali 2026 con tutte le partite, date e orari. Guarda tutte le partite dal vivo! Scarica flyer personalizzati per il tuo bar.">
+  <meta name="robots" content="index, follow">
+  <style>
+    /* ===== CSS COMPLETO ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --r: #d90012; --rdk: #a80010; --g: #ffcc00; --b: #000; --b2: #111; --b3: #1a1a1a;
+      --br: #333; --mt: #ccc; --mt2: #888; --fd: 'Barlow Condensed', sans-serif;
+    }
+    body { background: var(--b); color: #fff; font-family: 'DM Sans', sans-serif; -webkit-font-smoothing: antialiased; line-height: 1.5; }
+    header.hero { background: linear-gradient(to bottom, rgba(0,0,0,0.4), var(--b)), url('https://atendemidia.com.br/agendafut/images/hero-bg.jpg'); background-size: cover; background-position: center; padding: 60px 20px 40px; text-align: center; border-bottom: 1px solid var(--br); }
+    .h-eyebrow { font-family: var(--fd); font-size: 14px; font-weight: 800; color: var(--r); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 8px; }
+    .h-title { font-family: var(--fd); font-size: 42px; font-weight: 900; text-transform: uppercase; line-height: 0.9; margin-bottom: 12px; }
+    .h-title em { color: var(--g); font-style: normal; }
+    .h-sub { color: var(--mt); font-size: 16px; max-width: 600px; margin: 0 auto; }
+    .sbar { background: var(--b2); border-bottom: 1px solid var(--br); padding: 12px 20px; position: sticky; top: 0; z-index: 1000; }
+    .sbar-in { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+    .sbar-lbl { font-family: var(--fd); font-size: 11px; font-weight: 700; color: var(--mt2); text-transform: uppercase; letter-spacing: 1px; }
+    .sbar-cnt { font-family: var(--fd); font-size: 14px; font-weight: 800; color: var(--g); }
+    .search-section { max-width: 1200px; margin: 0 auto; padding: 30px 16px 10px; }
+    .search-container { background: var(--b2); border: 1px solid var(--br); border-radius: 40px; padding: 6px 6px 6px 24px; display: flex; align-items: center; gap: 12px; transition: border-color .3s, box-shadow .3s; }
+    .search-container:focus-within { border-color: var(--r); box-shadow: 0 0 0 4px rgba(217,0,18,0.15); }
+    .search-container input { background: none; border: none; color: #fff; font-size: 15px; flex: 1; outline: none; padding: 10px 0; font-family: 'DM Sans', sans-serif; }
+    .search-container button { background: var(--r); color: #fff; border: none; border-radius: 30px; padding: 10px 24px; font-family: var(--fd); font-size: 13px; font-weight: 800; text-transform: uppercase; cursor: pointer; transition: background .2s; letter-spacing: 1px; }
+    .search-container button:hover { background: var(--rdk); }
+    .search-clear { background: none !important; color: var(--mt2) !important; padding: 0 10px !important; font-size: 18px !important; display: none; cursor: pointer; }
+    .search-clear.visible { display: block; }
+    .search-stats { margin-top: 12px; font-size: 12px; color: var(--mt2); padding-left: 20px; }
+    .search-stats strong { color: #fff; }
+    .no-results { display: none; padding: 60px 20px; text-align: center; color: var(--mt2); }
+    .no-results.visible { display: block; }
+    .no-results h3 { font-family: var(--fd); font-size: 24px; color: #fff; margin-bottom: 8px; text-transform: uppercase; }
+    .no-results p { font-size: 14px; }
+    .jsec { max-width: 1200px; margin: 0 auto; padding: 24px 16px 60px; }
+    .sec-hdr { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 20px; border-bottom: 1px solid var(--br); padding-bottom: 12px; flex-wrap: wrap; }
+    .sec-hdr-left { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+    .sec-ttl { font-family: var(--fd); font-size: 20px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: #fff; }
+    .sec-bdg { font-family: var(--fd); font-size: 11px; font-weight: 700; color: var(--r); background: rgba(217,0,18,.12); border: 1px solid rgba(217,0,18,.2); padding: 2px 10px; border-radius: 2px; }
+    .btn-dl-all { background: var(--g); color: #000; border: none; border-radius: 20px; padding: 8px 18px; font-family: var(--fd); font-size: 12px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; white-space: nowrap; transition: background .2s, opacity .2s; }
+    .btn-dl-all:hover { background: #e6b800; }
+    .btn-dl-all:disabled { opacity: .6; cursor: not-allowed; }
+    .jogos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 16px; }
+    .jogo-card { background: var(--b2); border: 1px solid var(--br); border-radius: 8px; overflow: hidden; transition: border-color .25s, box-shadow .25s, transform .2s; display: flex; flex-direction: column; }
+    .jogo-card:hover { border-color: rgba(217,0,18,.4); box-shadow: 0 4px 40px rgba(217,0,18,.1); transform: translateY(-2px); }
+    .jogo-card.match-destaque { border-color: var(--g); box-shadow: 0 0 0 2px var(--br), 0 4px 40px rgba(255,204,0,.25); order: -1; }
+    .jogo-card.match-dim { opacity: 0.35; }
+    .card-inner { display: flex; flex-direction: column; height: 100%; }
+    .card-info { padding: 20px 18px 16px; flex: 1; display: flex; flex-direction: column; gap: 10px; }
+    .origin-badge { display: none; font-family: var(--fd); font-size: 9px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: #fff; background: var(--r); padding: 2px 10px; border-radius: 2px; align-self: flex-start; }
+    .camp-badge { display: inline-flex; align-items: center; gap: 6px; font-family: var(--fd); font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--g); }
+    .bdot { width: 5px; height: 5px; background: var(--g); border-radius: 50%; flex-shrink: 0; }
+    .matchup { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 8px 0 4px; width: 100%; }
+    .team { display: flex; flex-direction: column; align-items: center; gap: 6px; flex: 1; min-width: 0; }
+    .t-logo { width: 48px; height: 48px; object-fit: contain; flex-shrink: 0; }
+    .t-logo-ph { width: 48px; height: 48px; background: var(--b3); border-radius: 50%; flex-shrink: 0; }
+    .t-name { font-family: var(--fd); font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .3px; text-align: center; line-height: 1.2; word-break: break-word; max-width: 100%; }
+    .vs-block { display: flex; flex-direction: column; align-items: center; gap: 4px; flex-shrink: 0; padding: 0 4px; }
+    .vs { font-family: var(--fd); font-size: 18px; font-weight: 900; color: var(--r); }
+    .dt-stack { display: flex; flex-direction: column; align-items: center; gap: 1px; }
+    .dt-date { font-family: var(--fd); font-size: 10px; font-weight: 700; color: var(--mt); letter-spacing: .5px; text-align: center; white-space: nowrap; }
+    .dt-time { font-family: var(--fd); font-size: 15px; font-weight: 900; color: var(--g); white-space: nowrap; }
+    .card-pills { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 4px; }
+    .pill { font-size: 10px; color: var(--mt); background: var(--b3); border: 1px solid var(--br); padding: 2px 8px; border-radius: 20px; white-space: nowrap; }
+    .card-flyer { border-top: 1px solid var(--br); background: var(--b3); display: flex; flex-direction: row; align-items: center; justify-content: space-between; padding: 12px 16px; gap: 12px; flex-shrink: 0; }
+    .flyer-wrap { position: relative; width: 80px; min-width: 80px; flex-shrink: 0; cursor: zoom-in; border-radius: 4px; overflow: hidden; }
+    .flyer-img { width: 100%; display: block; border-radius: 4px; aspect-ratio: 9/16; object-fit: cover; border: 1px solid var(--br); }
+    .flyer-hov { position: absolute; inset: 0; background: rgba(0,0,0,.6); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity .2s; border-radius: 4px; font-family: var(--fd); font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #fff; }
+    .flyer-wrap:hover .flyer-hov { opacity: 1; }
+    .btn-dl { display: flex; align-items: center; justify-content: center; gap: 6px; width: 100%; background: var(--r); color: white; border: none; font-family: var(--fd); font-size: 13px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; padding: 10px 12px; border-radius: 4px; cursor: pointer; transition: background .2s; white-space: nowrap; }
+    .btn-dl:hover { background: var(--rdk); }
+    .btn-dl svg { width: 14px; height: 14px; flex-shrink: 0; }
+    .btn-dl-free { background: #1a7a3a; }
+    .btn-dl-free:hover { background: #0f5a2a; }
+    .flyer-na { padding: 20px; text-align: center; color: var(--mt2); font-size: 12px; }
+    #lb { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.93); z-index: 9999; align-items: center; justify-content: center; padding: 20px; cursor: zoom-out; }
+    #lb.open { display: flex; }
+    #lb img { max-height: 92vh; max-width: 100%; border-radius: 4px; box-shadow: 0 24px 80px rgba(0,0,0,.8); }
+    #lb-x { position: absolute; top: 18px; right: 22px; font-family: var(--fd); font-size: 28px; color: #fff; cursor: pointer; opacity: .7; transition: opacity .2s; }
+    #lb-x:hover { opacity: 1; }
+    footer { border-top: 1px solid var(--br); padding: 20px 16px; text-align: center; color: var(--mt2); font-size: 11px; }
+    footer a { color: var(--mt); text-decoration: none; }
+    footer a:hover { color: #fff; }
+    .popup-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.85); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); z-index: 10000; align-items: center; justify-content: center; padding: 20px; }
+    .popup-overlay.active { display: flex; }
+    .popup-container { background: var(--b2); border: 1px solid var(--br); border-radius: 16px; padding: 36px 40px; max-width: 520px; width: 100%; text-align: center; position: relative; box-shadow: 0 24px 80px rgba(0,0,0,.8); max-height: 95vh; overflow-y: auto; }
+    .popup-close { position: absolute; top: 12px; right: 16px; background: none; border: none; color: var(--mt); font-size: 28px; cursor: pointer; font-family: var(--fd); line-height: 1; }
+    .popup-close:hover { color: #fff; }
+    .popup-logo { max-width: 180px; height: auto; margin: 0 auto 16px; display: block; }
+    .popup-title { font-family: var(--fd); font-size: 22px; font-weight: 900; text-transform: uppercase; color: var(--g); margin-bottom: 6px; }
+    .popup-sub { color: var(--mt); font-size: 13px; margin-bottom: 20px; line-height: 1.4; }
+    .popup-form { display: flex; flex-direction: column; gap: 14px; text-align: left; }
+    .popup-form label { font-family: var(--fd); font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--mt); letter-spacing: 1px; }
+    .popup-form input { background: var(--b3); border: 1px solid var(--br); border-radius: 30px; padding: 12px 18px; color: #fff; font-size: 14px; width: 100%; outline: none; font-family: 'DM Sans', sans-serif; }
+    .popup-form input:focus { border-color: var(--g); }
+    .popup-form input::placeholder { color: var(--mt2); }
+    .popup-btn { background: var(--g); color: #000; border: none; border-radius: 30px; padding: 14px; font-family: var(--fd); font-size: 15px; font-weight: 800; text-transform: uppercase; cursor: pointer; margin-top: 6px; letter-spacing: 1px; }
+    .popup-btn:hover { background: #e6b800; }
+    .popup-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .popup-skip { background: none; border: none; color: var(--mt2); font-size: 12px; cursor: pointer; margin-top: 10px; font-family: var(--fd); text-decoration: underline; }
+    .popup-skip:hover { color: var(--mt); }
+    .popup-secure { color: var(--mt2); font-size: 11px; margin-top: 8px; }
+    .sbar-btn { background: var(--g); color: #000; border: none; border-radius: 20px; padding: 6px 16px; font-family: var(--fd); font-size: 11px; font-weight: 700; text-transform: uppercase; cursor: pointer; letter-spacing: 0.5px; }
+    .sbar-btn:hover { background: #e6b800; }
+    .toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); padding: 14px 28px; border-radius: 8px; font-family: 'Barlow Condensed', sans-serif; font-size: 16px; font-weight: 700; z-index: 10001; box-shadow: 0 8px 32px rgba(0,0,0,0.4); text-transform: uppercase; letter-spacing: 1px; white-space: nowrap; text-align: center; max-width: 90vw; overflow: hidden; text-overflow: ellipsis; transition: opacity 0.5s; }
+    .toast.success { background: #1a7a3a; color: #fff; }
+    .toast.saving { background: #2a4a7a; color: #fff; }
+    .toast.error { background: #a80010; color: #fff; }
+    @media (max-width: 768px) {
+      .jogos-grid { grid-template-columns: 1fr; gap: 14px; }
+      .h-title { font-size: 22px; }
+      .h-sub { font-size: 12px; }
+      .card-info { padding: 16px 14px 12px; }
+      .t-logo { width: 40px; height: 40px; }
+      .t-logo-ph { width: 40px; height: 40px; }
+      .t-name { font-size: 10px; }
+      .vs { font-size: 16px; }
+      .dt-date { font-size: 9px; }
+      .dt-time { font-size: 13px; }
+      .card-flyer { padding: 10px 14px; flex-wrap: wrap; }
+      .flyer-wrap { width: 70px; min-width: 70px; }
+      .btn-dl { font-size: 11px; padding: 8px 12px; }
+      .sec-ttl { font-size: 17px; }
+      .search-container input { font-size: 12px; padding: 10px 0; }
+      .search-container button { font-size: 11px; padding: 8px 16px; }
+      .popup-container { padding: 28px 24px; }
+      .popup-title { font-size: 19px; }
+      .sec-hdr { justify-content: flex-start; }
+      .btn-dl-all { width: 100%; text-align: center; }
+    }
+    @media (max-width: 480px) {
+      .jogos-grid { gap: 12px; }
+      .card-info { padding: 12px 10px 10px; }
+      .matchup { gap: 4px; }
+      .t-logo { width: 34px; height: 34px; }
+      .t-logo-ph { width: 34px; height: 34px; }
+      .t-name { font-size: 9px; }
+      .vs { font-size: 14px; }
+      .dt-date { font-size: 8px; }
+      .dt-time { font-size: 11px; }
+      .card-flyer { flex-direction: column; align-items: stretch; padding: 10px 12px; }
+      .flyer-wrap { width: 100%; max-width: 120px; margin: 0 auto; min-width: unset; }
+      .btn-dl { font-size: 11px; padding: 8px 14px; min-height: 40px; }
+      .camp-badge { font-size: 9px; }
+      .sec-ttl { font-size: 15px; }
+      .search-container { padding: 4px 4px 4px 14px; }
+      .search-container input { font-size: 12px; padding: 10px 0; }
+      .search-container button { font-size: 11px; padding: 8px 16px; }
+    }
+  </style>
+</head>
+<body>
+<div id="popupOverlay" class="popup-overlay">
+  <div class="popup-container">
+    <button class="popup-close" onclick="closePopup()" aria-label="Close popup">×</button>
+    <img src="https://atendemidia.com.br/agendafut/images/logo.png" alt="Agenda Fut Logo" class="popup-logo">
+    <h2 class="popup-title" id="popupTitleText"></h2>
+    <p class="popup-sub" id="popupSubText"></p>
+    <form class="popup-form" id="popupForm" novalidate>
+      <label for="popupEmail" id="popupEmailLabel"></label>
+      <input type="email" id="popupEmail" name="email" required>
+      <label for="popupPhone" id="popupPhoneLabel"></label>
+      <input type="tel" id="popupPhone" name="phone">
+      <label for="popupBar" id="popupBarLabel"></label>
+      <input type="text" id="popupBar" name="bar" required>
+      <label for="popupAddress" id="popupAddressLabel"></label>
+      <input type="text" id="popupAddress" name="address" required>
+      <button type="submit" class="popup-btn" id="popupSubmitBtn"></button>
+    </form>
+    <button class="popup-skip" id="popupSkipBtn" onclick="skipPopup()"></button>
+    <p class="popup-secure" id="popupSecureNote"></p>
+  </div>
+</div>
+<div id="lb" onclick="closeLB()">
+  <span id="lb-x" onclick="closeLB()">×</span>
+  <img id="lb-i" src="" alt="">
+</div>
+<header class="hero">
+  <div class="h-eyebrow">CALENDARIO GRATUITO DEI MONDIALI</div>
+  <h1 class="h-title">Mondiali <em>2026</em></h1>
+  <p class="h-sub">Calendario completo con tutte le partite, date e orari. Scarica flyer personalizzati per il tuo bar — 100% gratis.</p>
+</header>
+<nav class="sbar" aria-label="Info bar">
+  <div class="sbar-in">
+    <span class="sbar-lbl">TOTALE PARTITE</span>
+    <div style="display:flex; gap:12px; align-items:center;">
+      <span class="sbar-cnt">7 partite</span>
+      <button class="sbar-btn" onclick="openPopup()">Personalizza con il mio bar</button>
+    </div>
+  </div>
+</nav>
+<div class="search-section">
+  <div class="search-container">
+    <input type="text" id="searchInput" placeholder="Cerca per squadra, data o campionato..." aria-label="Search">
+    <button onclick="performSearch()" aria-label="Search">Cerca</button>
+    <button class="search-clear" id="searchClear" onclick="clearSearch()" aria-label="Clear search">✕</button>
+  </div>
+  <div class="search-stats" id="searchStats">Mostrando <strong id="visibleCount">7</strong> di <strong id="totalCount">7</strong> partite</div>
+</div>
+<main class="jsec" role="main">
+  <div class="sec-hdr">
+    <div class="sec-hdr-left">
+      <h2 class="sec-ttl">Calendario Completo</h2>
+      <span class="sec-bdg">7 partite</span>
+    </div>
+    <button class="btn-dl-all" id="btnDownloadAll" onclick="downloadAllFlyers()">Download All</button>
+  </div>
+  <div class="jogos-grid">
+    <article class="jogo-card" id="jogo-1" itemscope itemtype="https://schema.org/SportsEvent"><meta itemprop="name" content="Brasile vs Norvegia - Coppa del Mondo"><meta itemprop="sport" content="Soccer"><meta itemprop="startDate" content="05/07 22:00"><div class="card-inner"><div class="card-info"><div class="origin-badge">Brasile</div><div class="camp-badge"><span class="bdot"></span>Coppa del Mondo</div><div class="matchup"><div class="team" itemprop="homeTeam" itemscope itemtype="https://schema.org/SportsTeam"><meta itemprop="name" content="Brasile"><img src="../../fut/img/brasil.png" alt="Brasile shield" class="t-logo" loading="lazy"><span class="t-name">Brasile</span></div><div class="vs-block"><span class="vs">VS</span><div class="dt-stack"><span class="dt-date">05/07</span><span class="dt-time">22:00</span></div></div><div class="team" itemprop="awayTeam" itemscope itemtype="https://schema.org/SportsTeam"><meta itemprop="name" content="Norvegia"><img src="../../fut/img/noruega.png" alt="Norvegia shield" class="t-logo" loading="lazy"><span class="t-name">Norvegia</span></div></div><div class="card-pills"><span class="pill">Ottimizzato per Instagram Story</span><span class="pill">Scarica e condividi su qualsiasi piattaforma</span><span class="pill">100% Gratis</span></div></div><div class="card-flyer"><div class="flyer-wrap" onclick="handleZoomClick('../../jogos/img/brasil-brasile-vs-norvegia-it.jpg','Brasile vs Norvegia',1)"><canvas id="flyerCanvas-1" width="1080" height="1920" style="display:none; max-height:140px; width:auto;"></canvas><img id="flyerPreview-1" src="../../jogos/img/brasil-brasile-vs-norvegia-it.jpg" data-original-src="../../jogos/img/brasil-brasile-vs-norvegia-it.jpg" style="max-height:140px;" alt="Flyer Brasile vs Norvegia - Coppa del Mondo - 05/07 22:00" class="flyer-img" loading="lazy" width="1080" height="1920"><div class="flyer-hov">Clicca per ingrandire</div></div><button class="btn-dl btn-dl-free" onclick="handleDownloadClick(1, this)" aria-label="Genera con Bar Brasile vs Norvegia"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Genera con Bar</button></div></div></article>
+<article class="jogo-card" id="jogo-2" itemscope itemtype="https://schema.org/SportsEvent"><meta itemprop="name" content="Messico vs Inghilterra - Coppa del Mondo"><meta itemprop="sport" content="Soccer"><meta itemprop="startDate" content="06/07 02:00"><div class="card-inner"><div class="card-info"><div class="origin-badge">Messico</div><div class="camp-badge"><span class="bdot"></span>Coppa del Mondo</div><div class="matchup"><div class="team" itemprop="homeTeam" itemscope itemtype="https://schema.org/SportsTeam"><meta itemprop="name" content="Messico"><img src="../../fut/img/mexico.png" alt="Messico shield" class="t-logo" loading="lazy"><span class="t-name">Messico</span></div><div class="vs-block"><span class="vs">VS</span><div class="dt-stack"><span class="dt-date">06/07</span><span class="dt-time">02:00</span></div></div><div class="team" itemprop="awayTeam" itemscope itemtype="https://schema.org/SportsTeam"><meta itemprop="name" content="Inghilterra"><img src="../../fut/img/inglaterra.png" alt="Inghilterra shield" class="t-logo" loading="lazy"><span class="t-name">Inghilterra</span></div></div><div class="card-pills"><span class="pill">Ottimizzato per Instagram Story</span><span class="pill">Scarica e condividi su qualsiasi piattaforma</span><span class="pill">100% Gratis</span></div></div><div class="card-flyer"><div class="flyer-wrap" onclick="handleZoomClick('../../jogos/img/mexico-messico-vs-inghilterra-it.jpg','Messico vs Inghilterra',2)"><canvas id="flyerCanvas-2" width="1080" height="1920" style="display:none; max-height:140px; width:auto;"></canvas><img id="flyerPreview-2" src="../../jogos/img/mexico-messico-vs-inghilterra-it.jpg" data-original-src="../../jogos/img/mexico-messico-vs-inghilterra-it.jpg" style="max-height:140px;" alt="Flyer Messico vs Inghilterra - Coppa del Mondo - 06/07 02:00" class="flyer-img" loading="lazy" width="1080" height="1920"><div class="flyer-hov">Clicca per ingrandire</div></div><button class="btn-dl btn-dl-free" onclick="handleDownloadClick(2, this)" aria-label="Genera con Bar Messico vs Inghilterra"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Genera con Bar</button></div></div></article>
+<article class="jogo-card" id="jogo-3" itemscope itemtype="https://schema.org/SportsEvent"><meta itemprop="name" content="Portogallo vs Spagna - Coppa del Mondo"><meta itemprop="sport" content="Soccer"><meta itemprop="startDate" content="06/07 21:00"><div class="card-inner"><div class="card-info"><div class="origin-badge">Portogallo</div><div class="camp-badge"><span class="bdot"></span>Coppa del Mondo</div><div class="matchup"><div class="team" itemprop="homeTeam" itemscope itemtype="https://schema.org/SportsTeam"><meta itemprop="name" content="Portogallo"><img src="../../fut/img/portugal.png" alt="Portogallo shield" class="t-logo" loading="lazy"><span class="t-name">Portogallo</span></div><div class="vs-block"><span class="vs">VS</span><div class="dt-stack"><span class="dt-date">06/07</span><span class="dt-time">21:00</span></div></div><div class="team" itemprop="awayTeam" itemscope itemtype="https://schema.org/SportsTeam"><meta itemprop="name" content="Spagna"><img src="../../fut/img/espanha.png" alt="Spagna shield" class="t-logo" loading="lazy"><span class="t-name">Spagna</span></div></div><div class="card-pills"><span class="pill">Ottimizzato per Instagram Story</span><span class="pill">Scarica e condividi su qualsiasi piattaforma</span><span class="pill">100% Gratis</span></div></div><div class="card-flyer"><div class="flyer-wrap" onclick="handleZoomClick('../../jogos/img/portugal-portogallo-vs-spagna-it.jpg','Portogallo vs Spagna',3)"><canvas id="flyerCanvas-3" width="1080" height="1920" style="display:none; max-height:140px; width:auto;"></canvas><img id="flyerPreview-3" src="../../jogos/img/portugal-portogallo-vs-spagna-it.jpg" data-original-src="../../jogos/img/portugal-portogallo-vs-spagna-it.jpg" style="max-height:140px;" alt="Flyer Portogallo vs Spagna - Coppa del Mondo - 06/07 21:00" class="flyer-img" loading="lazy" width="1080" height="1920"><div class="flyer-hov">Clicca per ingrandire</div></div><button class="btn-dl btn-dl-free" onclick="handleDownloadClick(3, this)" aria-label="Genera con Bar Portogallo vs Spagna"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Genera con Bar</button></div></div></article>
+<article class="jogo-card" id="jogo-4" itemscope itemtype="https://schema.org/SportsEvent"><meta itemprop="name" content="Stati Uniti vs Belgio - Coppa del Mondo"><meta itemprop="sport" content="Soccer"><meta itemprop="startDate" content="07/07 02:00"><div class="card-inner"><div class="card-info"><div class="origin-badge">Stati Uniti</div><div class="camp-badge"><span class="bdot"></span>Coppa del Mondo</div><div class="matchup"><div class="team" itemprop="homeTeam" itemscope itemtype="https://schema.org/SportsTeam"><meta itemprop="name" content="Stati Uniti"><img src="../../fut/img/estados-unidos.png" alt="Stati Uniti shield" class="t-logo" loading="lazy"><span class="t-name">Stati Uniti</span></div><div class="vs-block"><span class="vs">VS</span><div class="dt-stack"><span class="dt-date">07/07</span><span class="dt-time">02:00</span></div></div><div class="team" itemprop="awayTeam" itemscope itemtype="https://schema.org/SportsTeam"><meta itemprop="name" content="Belgio"><img src="../../fut/img/belgica.png" alt="Belgio shield" class="t-logo" loading="lazy"><span class="t-name">Belgio</span></div></div><div class="card-pills"><span class="pill">Ottimizzato per Instagram Story</span><span class="pill">Scarica e condividi su qualsiasi piattaforma</span><span class="pill">100% Gratis</span></div></div><div class="card-flyer"><div class="flyer-wrap" onclick="handleZoomClick('../../jogos/img/estados-unidos-stati-uniti-vs-belgio-it.jpg','Stati Uniti vs Belgio',4)"><canvas id="flyerCanvas-4" width="1080" height="1920" style="display:none; max-height:140px; width:auto;"></canvas><img id="flyerPreview-4" src="../../jogos/img/estados-unidos-stati-uniti-vs-belgio-it.jpg" data-original-src="../../jogos/img/estados-unidos-stati-uniti-vs-belgio-it.jpg" style="max-height:140px;" alt="Flyer Stati Uniti vs Belgio - Coppa del Mondo - 07/07 02:00" class="flyer-img" loading="lazy" width="1080" height="1920"><div class="flyer-hov">Clicca per ingrandire</div></div><button class="btn-dl btn-dl-free" onclick="handleDownloadClick(4, this)" aria-label="Genera con Bar Stati Uniti vs Belgio"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Genera con Bar</button></div></div></article>
+<article class="jogo-card" id="jogo-5" itemscope itemtype="https://schema.org/SportsEvent"><meta itemprop="name" content="Argentina vs Egitto - Coppa del Mondo"><meta itemprop="sport" content="Soccer"><meta itemprop="startDate" content="07/07 18:00"><div class="card-inner"><div class="card-info"><div class="origin-badge">Argentina</div><div class="camp-badge"><span class="bdot"></span>Coppa del Mondo</div><div class="matchup"><div class="team" itemprop="homeTeam" itemscope itemtype="https://schema.org/SportsTeam"><meta itemprop="name" content="Argentina"><img src="../../fut/img/argentina.png" alt="Argentina shield" class="t-logo" loading="lazy"><span class="t-name">Argentina</span></div><div class="vs-block"><span class="vs">VS</span><div class="dt-stack"><span class="dt-date">07/07</span><span class="dt-time">18:00</span></div></div><div class="team" itemprop="awayTeam" itemscope itemtype="https://schema.org/SportsTeam"><meta itemprop="name" content="Egitto"><img src="../../fut/img/egito.png" alt="Egitto shield" class="t-logo" loading="lazy"><span class="t-name">Egitto</span></div></div><div class="card-pills"><span class="pill">Ottimizzato per Instagram Story</span><span class="pill">Scarica e condividi su qualsiasi piattaforma</span><span class="pill">100% Gratis</span></div></div><div class="card-flyer"><div class="flyer-wrap" onclick="handleZoomClick('../../jogos/img/argentina-argentina-vs-egitto-it.jpg','Argentina vs Egitto',5)"><canvas id="flyerCanvas-5" width="1080" height="1920" style="display:none; max-height:140px; width:auto;"></canvas><img id="flyerPreview-5" src="../../jogos/img/argentina-argentina-vs-egitto-it.jpg" data-original-src="../../jogos/img/argentina-argentina-vs-egitto-it.jpg" style="max-height:140px;" alt="Flyer Argentina vs Egitto - Coppa del Mondo - 07/07 18:00" class="flyer-img" loading="lazy" width="1080" height="1920"><div class="flyer-hov">Clicca per ingrandire</div></div><button class="btn-dl btn-dl-free" onclick="handleDownloadClick(5, this)" aria-label="Genera con Bar Argentina vs Egitto"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Genera con Bar</button></div></div></article>
+<article class="jogo-card" id="jogo-6" itemscope itemtype="https://schema.org/SportsEvent"><meta itemprop="name" content="Svizzera vs Colombia - Coppa del Mondo"><meta itemprop="sport" content="Soccer"><meta itemprop="startDate" content="07/07 22:00"><div class="card-inner"><div class="card-info"><div class="origin-badge">Svizzera</div><div class="camp-badge"><span class="bdot"></span>Coppa del Mondo</div><div class="matchup"><div class="team" itemprop="homeTeam" itemscope itemtype="https://schema.org/SportsTeam"><meta itemprop="name" content="Svizzera"><img src="../../fut/img/suica.png" alt="Svizzera shield" class="t-logo" loading="lazy"><span class="t-name">Svizzera</span></div><div class="vs-block"><span class="vs">VS</span><div class="dt-stack"><span class="dt-date">07/07</span><span class="dt-time">22:00</span></div></div><div class="team" itemprop="awayTeam" itemscope itemtype="https://schema.org/SportsTeam"><meta itemprop="name" content="Colombia"><img src="../../fut/img/colombia.png" alt="Colombia shield" class="t-logo" loading="lazy"><span class="t-name">Colombia</span></div></div><div class="card-pills"><span class="pill">Ottimizzato per Instagram Story</span><span class="pill">Scarica e condividi su qualsiasi piattaforma</span><span class="pill">100% Gratis</span></div></div><div class="card-flyer"><div class="flyer-wrap" onclick="handleZoomClick('../../jogos/img/suica-svizzera-vs-colombia-it.jpg','Svizzera vs Colombia',6)"><canvas id="flyerCanvas-6" width="1080" height="1920" style="display:none; max-height:140px; width:auto;"></canvas><img id="flyerPreview-6" src="../../jogos/img/suica-svizzera-vs-colombia-it.jpg" data-original-src="../../jogos/img/suica-svizzera-vs-colombia-it.jpg" style="max-height:140px;" alt="Flyer Svizzera vs Colombia - Coppa del Mondo - 07/07 22:00" class="flyer-img" loading="lazy" width="1080" height="1920"><div class="flyer-hov">Clicca per ingrandire</div></div><button class="btn-dl btn-dl-free" onclick="handleDownloadClick(6, this)" aria-label="Genera con Bar Svizzera vs Colombia"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Genera con Bar</button></div></div></article>
+<article class="jogo-card" id="jogo-7" itemscope itemtype="https://schema.org/SportsEvent"><meta itemprop="name" content="Francia vs Marocco - Coppa del Mondo"><meta itemprop="sport" content="Soccer"><meta itemprop="startDate" content="09/07 22:00"><div class="card-inner"><div class="card-info"><div class="origin-badge">Marocco</div><div class="camp-badge"><span class="bdot"></span>Coppa del Mondo</div><div class="matchup"><div class="team" itemprop="homeTeam" itemscope itemtype="https://schema.org/SportsTeam"><meta itemprop="name" content="Francia"><img src="../../fut/img/franca.png" alt="Francia shield" class="t-logo" loading="lazy"><span class="t-name">Francia</span></div><div class="vs-block"><span class="vs">VS</span><div class="dt-stack"><span class="dt-date">09/07</span><span class="dt-time">22:00</span></div></div><div class="team" itemprop="awayTeam" itemscope itemtype="https://schema.org/SportsTeam"><meta itemprop="name" content="Marocco"><img src="../../fut/img/marrocos.png" alt="Marocco shield" class="t-logo" loading="lazy"><span class="t-name">Marocco</span></div></div><div class="card-pills"><span class="pill">Ottimizzato per Instagram Story</span><span class="pill">Scarica e condividi su qualsiasi piattaforma</span><span class="pill">100% Gratis</span></div></div><div class="card-flyer"><div class="flyer-wrap" onclick="handleZoomClick('../../jogos/img/marrocos-francia-vs-marocco-it.jpg','Francia vs Marocco',7)"><canvas id="flyerCanvas-7" width="1080" height="1920" style="display:none; max-height:140px; width:auto;"></canvas><img id="flyerPreview-7" src="../../jogos/img/marrocos-francia-vs-marocco-it.jpg" data-original-src="../../jogos/img/marrocos-francia-vs-marocco-it.jpg" style="max-height:140px;" alt="Flyer Francia vs Marocco - Coppa del Mondo - 09/07 22:00" class="flyer-img" loading="lazy" width="1080" height="1920"><div class="flyer-hov">Clicca per ingrandire</div></div><button class="btn-dl btn-dl-free" onclick="handleDownloadClick(7, this)" aria-label="Genera con Bar Francia vs Marocco"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Genera con Bar</button></div></div></article>
+  </div>
+</main>
+<footer>
+  <p>&copy; 2026 <a href="https://atendemidia.com.br">AtendeMidia</a> - Calendario Partite Mondiali - Scarica flyer gratuiti per il tuo bar</p>
+</footer>
+<script>
+var IS_PAID = false;
+var pendingAction = null;
+function processURLParams() {
+  var params = new URLSearchParams(window.location.search);
+  var hashParams = new URLSearchParams(window.location.hash.replace(`#`, `?`));
+  var paymentOk = params.get(`payment`) === `success` || hashParams.get(`payment`) === `success`;
+  var debugOk = params.get(`debug`) === `true` || hashParams.get(`debug`) === `true`;
+  if (paymentOk || debugOk) {
+    IS_PAID = true;
+    try { localStorage.setItem(`paymentStatus`, `confirmed`); } catch(e) {}
+    try { localStorage.setItem(`ofertaDesativada`, `true`); } catch(e) {}
+    try { localStorage.setItem(`paid`, `true`); } catch(e) {}
+    console.log(`✅ PAGAMENTO RECONHECIDO`);
+    return true;
+  }
+  return false;
+}
+processURLParams();
+const T = {
+  popupLeadTitle: `Personalizza i Tuoi Flyer`,
+  popupLeadSub: `Aggiungi il nome e l\'indirizzo del tuo bar in tutti i flyer`,
+  popupEmailLabel: `Email *`,
+  popupPhoneLabel: `WhatsApp`,
+  popupBarLabel: `Nome del Bar *`,
+  popupAddressLabel: `Indirizzo *`,
+  popupSubmitBtn: `✅ Personalizza & Scarica`,
+  popupSkipBtn: `Salta, lo farò dopo`,
+  popupSecureNote: `🔒 I tuoi dati sono al sicuro. Non li condividiamo con terzi.`,
+  popupToastSaving: `⏳ Salvataggio dei tuoi dati...`,
+  popupToastSuccess: `✅ Dati salvati! Flyer personalizzati pronti!`,
+  downloadAllProgress: `Downloading {current}/{total}...`,
+  downloadAllDone: `All flyers downloaded!`,
+  downloadAllNeedData: `Fill in your bar info first.`
+};
+function showToast(msg, type) {
+  var existing = document.querySelector(`.toast`);
+  if (existing) existing.remove();
+  var toast = document.createElement(`div`);
+  toast.className = `toast ` + (type || `success`);
+  toast.textContent = msg;
+  document.body.appendChild(toast);
+  setTimeout(function() { toast.style.opacity = `0`; setTimeout(function() { toast.remove(); }, 500); }, 3500);
+}
+function checkPayment() {
+  if (IS_PAID) return true;
+  try {
+    var status = localStorage.getItem(`paymentStatus`);
+    var oferta = localStorage.getItem(`ofertaDesativada`);
+    var paid = localStorage.getItem(`paid`);
+  } catch(e) { return false; }
+  var urlParams = new URLSearchParams(window.location.search);
+  var emailParam = urlParams.get(`email`);
+  if (emailParam) {
+    try { localStorage.setItem(`paymentStatus`, `confirmed`); localStorage.setItem(`ofertaDesativada`, `true`); } catch(e) {}
+    return true;
+  }
+  return (status === `confirmed` || oferta === `true` || paid === `true`);
+}
+function redirectToIndex() {
+  var currentPath = window.location.pathname;
+  var parts = currentPath.split(`/`);
+  parts[parts.length - 1] = `pack.html`;
+  window.location.href = parts.join(`/`);
+}
+function handleZoomClick(src, alt, index) {
+  var hasBar, hasAddress;
+  try {
+    hasBar = localStorage.getItem(`flyerBarName`);
+    hasAddress = localStorage.getItem(`flyerAddress`);
+  } catch(e) { hasBar = null; hasAddress = null; }
+  if (!hasBar || !hasAddress) {
+    pendingAction = { type: `zoom`, src: src, alt: alt, index: index };
+    openPopup();
+    return;
+  }
+  if (!checkPayment()) { redirectToIndex(); return; }
+  openLB(src, alt, index);
+}
+function handleDownloadClick(index, button) {
+  var hasBar, hasAddress;
+  try {
+    hasBar = localStorage.getItem(`flyerBarName`);
+    hasAddress = localStorage.getItem(`flyerAddress`);
+  } catch(e) { hasBar = null; hasAddress = null; }
+  if (!hasBar || !hasAddress) {
+    pendingAction = { type: `download`, index: index, button: button };
+    openPopup();
+    return;
+  }
+  if (!checkPayment()) { redirectToIndex(); return; }
+  generateFlyer(index, button);
+}
+document.addEventListener(`DOMContentLoaded`, function() {
+  populatePopupTexts();
+  if (checkPayment()) {
+    try { localStorage.setItem(`popupSeen`, `true`); } catch(e) {}
+    var banner = document.createElement(`div`);
+    banner.style.cssText = `position:sticky; top:0; z-index:1000; background:#1a7a3a; color:#fff; padding:14px 20px; text-align:center; font-family:"Bebas Neue",sans-serif; font-size:18px; letter-spacing:1px; box-shadow:0 4px 20px rgba(0,0,0,0.5);`;
+    document.body.prepend(banner);
+    renderAllPreviews();
+  }
+  var form = document.getElementById(`popupForm`);
+  if (form) {
+    form.addEventListener(`submit`, function(event) {
+      event.preventDefault();
+      var email = document.getElementById(`popupEmail`).value.trim();
+      var bar = document.getElementById(`popupBar`).value.trim();
+      var address = document.getElementById(`popupAddress`).value.trim();
+      if (!email || !bar || !address) { alert(`Some errors was detected.`); return; }
+      try {
+        localStorage.setItem(`flyerBarName`, bar);
+        localStorage.setItem(`flyerAddress`, address);
+        localStorage.setItem(`leadEmail`, email);
+        localStorage.setItem(`leadPhone`, document.getElementById(`popupPhone`).value.trim());
+      } catch(e) {
+        alert(`Storage blocked. Please use a web server (not file://)`);
+        return;
+      }
+      showToast(T.popupToastSaving, `saving`);
+      finishPopup();
+    });
+  }
+});
+function finishPopup() {
+  closePopup();
+  showToast(T.popupToastSuccess, `success`);
+  setTimeout(function() {
+    if (pendingAction) {
+      if (pendingAction.type === `download`) {
+        if (!checkPayment()) { redirectToIndex(); }
+        else { generateFlyer(pendingAction.index, pendingAction.button); }
+      } else if (pendingAction.type === `zoom`) {
+        if (!checkPayment()) { redirectToIndex(); }
+        else { openLB(pendingAction.src, pendingAction.alt, pendingAction.index); }
+      } else if (pendingAction.type === `downloadAll`) {
+        if (!checkPayment()) { redirectToIndex(); }
+        else { setTimeout(downloadAllFlyers, 500); }
+      }
+      pendingAction = null;
+    } else {
+      window.location.reload();
+    }
+  }, 1000);
+}
+function populatePopupTexts() {
+  var el;
+  el = document.getElementById(`popupTitleText`); if (el) el.textContent = T.popupLeadTitle;
+  el = document.getElementById(`popupSubText`); if (el) el.textContent = T.popupLeadSub;
+  el = document.getElementById(`popupEmailLabel`); if (el) el.textContent = T.popupEmailLabel;
+  el = document.getElementById(`popupPhoneLabel`); if (el) el.textContent = T.popupPhoneLabel;
+  el = document.getElementById(`popupBarLabel`); if (el) el.textContent = T.popupBarLabel;
+  el = document.getElementById(`popupAddressLabel`); if (el) el.textContent = T.popupAddressLabel;
+  el = document.getElementById(`popupSubmitBtn`); if (el) el.textContent = T.popupSubmitBtn;
+  el = document.getElementById(`popupSkipBtn`); if (el) el.textContent = T.popupSkipBtn;
+  el = document.getElementById(`popupSecureNote`); if (el) el.textContent = T.popupSecureNote;
+}
+function openPopup() {
+  var savedEmail, savedBar, savedAddress;
+  try {
+    savedEmail = localStorage.getItem(`leadEmail`);
+    savedBar = localStorage.getItem(`flyerBarName`);
+    savedAddress = localStorage.getItem(`flyerAddress`);
+  } catch(e) { savedEmail = savedBar = savedAddress = null; }
+  if (savedEmail) document.getElementById(`popupEmail`).value = savedEmail;
+  if (savedBar) document.getElementById(`popupBar`).value = savedBar;
+  if (savedAddress) document.getElementById(`popupAddress`).value = savedAddress;
+  document.getElementById(`popupOverlay`).classList.add(`active`);
+  document.body.style.overflow = `hidden`;
+}
+function closePopup() {
+  document.getElementById(`popupOverlay`).classList.remove(`active`);
+  document.body.style.overflow = ``;
+}
+function skipPopup() { pendingAction = null; closePopup(); }
+function openLB(src, alt, index) {
+  var canvas = document.getElementById(`flyerCanvas-` + index);
+  var finalSrc = (canvas && canvas.dataset.rendered === `true`) ? canvas.toDataURL(`image/jpeg`, 0.92) : src;
+  document.getElementById(`lb-i`).src = finalSrc;
+  document.getElementById(`lb-i`).alt = alt;
+  document.getElementById(`lb`).classList.add(`open`);
+  document.body.style.overflow = `hidden`;
+}
+function closeLB() {
+  document.getElementById(`lb`).classList.remove(`open`);
+  document.body.style.overflow = ``;
+}
+var fontLoaded = false;
+async function ensureFont() {
+  if (fontLoaded) return;
+  try {
+    var font = new FontFace(`Heavitas`, `url(../../fonts/heavitas.ttf)`);
+    await font.load();
+    document.fonts.add(font);
+    fontLoaded = true;
+  } catch (e) { console.warn(`Font Heavitas not loaded`, e); }
+}
+function drawWrappedText(ctx, text, x, y, maxWidth, lineHeight) {
+  var words = text.split(` `);
+  var line = ``;
+  var lines = [];
+  for (var i = 0; i < words.length; i++) {
+    var testLine = line + words[i] + ` `;
+    if (ctx.measureText(testLine).width > maxWidth && i > 0) { lines.push(line); line = words[i] + ` `; }
+    else { line = testLine; }
+  }
+  lines.push(line);
+  for (var j = 0; j < lines.length; j++) { ctx.fillText(lines[j], x, y + j * lineHeight); }
+}
+function loadImagePromise(src) {
+  return new Promise(function(resolve, reject) {
+    var img = new Image();
+    img.onload = function() { resolve(img); };
+    img.onerror = function() { reject(new Error(`Load failed: ` + src)); };
+    img.src = src;
+  });
+}
+async function renderFlyerToCanvas(index) {
+  var img = document.getElementById(`flyerPreview-` + index);
+  var canvas = document.getElementById(`flyerCanvas-` + index);
+  var bar = ``, address = ``;
+  try {
+    bar = localStorage.getItem(`flyerBarName`) || ``;
+    address = localStorage.getItem(`flyerAddress`) || ``;
+  } catch(e) { return null; }
+  if (!img || !canvas || !bar || !address) return null;
+  await ensureFont();
+  var base = await loadImagePromise(img.getAttribute(`data-original-src`) || img.src);
+  var ctx = canvas.getContext(`2d`);
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.drawImage(base, 0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = `#FFCC00`;
+  ctx.font = `60px Heavitas, Arial`;
+  ctx.textAlign = `center`;
+  ctx.fillText(bar, canvas.width / 2, 598);
+  ctx.fillStyle = `#FFFFFF`;
+  ctx.font = `35px Heavitas, Arial`;
+  drawWrappedText(ctx, address, canvas.width / 2, 1356, 880, 60);
+  return canvas;
+}
+async function generateFlyer(index, button) {
+  var originalHTML = button.innerHTML;
+  button.disabled = true;
+  button.innerHTML = `Generating...`;
+  var canvas = await renderFlyerToCanvas(index);
+  if (canvas) {
+    var dataURL = canvas.toDataURL(`image/jpeg`, 0.92);
+    var link = document.createElement(`a`);
+    link.href = dataURL;
+    link.download = `flyer-` + index + `.jpg`;
+    link.click();
+    var img = document.getElementById(`flyerPreview-` + index);
+    img.src = dataURL;
+    canvas.dataset.rendered = `true`;
+  }
+  button.disabled = false;
+  button.innerHTML = originalHTML;
+}
+function renderAllPreviews() {
+  var canvases = document.querySelectorAll(`[id^="flyerCanvas-"]`);
+  canvases.forEach(function(c) { renderPreview(c.id.replace(`flyerCanvas-`, ``)); });
+}
+async function renderPreview(index) {
+  var canvas = await renderFlyerToCanvas(index);
+  if (canvas) {
+    document.getElementById(`flyerPreview-` + index).style.display = `none`;
+    canvas.style.display = `block`;
+    canvas.dataset.rendered = `true`;
+  }
+}
+async function downloadAllFlyers() {
+  var hasBar, hasAddress;
+  try {
+    hasBar = localStorage.getItem(`flyerBarName`);
+    hasAddress = localStorage.getItem(`flyerAddress`);
+  } catch(e) { hasBar = null; hasAddress = null; }
+  if (!hasBar || !hasAddress) {
+    pendingAction = { type: `downloadAll` };
+    openPopup();
+    return;
+  }
+  if (!checkPayment()) { redirectToIndex(); return; }
+  var btn = document.getElementById(`btnDownloadAll`);
+  var canvases = document.querySelectorAll(`[id^="flyerCanvas-"]`);
+  btn.disabled = true;
+  for (var i = 0; i < canvases.length; i++) {
+    var idx = canvases[i].id.replace(`flyerCanvas-`, ``);
+    btn.textContent = T.downloadAllProgress.replace(`{current}`, i + 1).replace(`{total}`, canvases.length);
+    var canvas = await renderFlyerToCanvas(idx);
+    if (canvas) {
+      var link = document.createElement(`a`);
+      link.href = canvas.toDataURL(`image/jpeg`, 0.92);
+      link.download = `flyer-` + idx + `.jpg`;
+      link.click();
+      canvas.dataset.rendered = `true`;
+    }
+    await new Promise(r => setTimeout(r, 1000));
+  }
+  btn.disabled = false;
+  btn.textContent = T.downloadAllDone;
+}
+function performSearch() {
+  var query = document.getElementById(`searchInput`).value.toLowerCase().trim();
+  var cards = document.querySelectorAll(`.jogo-card`);
+  var matchCount = 0;
+  cards.forEach(function(card) {
+    var text = card.textContent.toLowerCase();
+    if (text.indexOf(query) !== -1) { card.style.display = ``; matchCount++; }
+    else { card.style.display = `none`; }
+  });
+  document.getElementById(`visibleCount`).textContent = matchCount;
+  var clearBtn = document.getElementById(`searchClear`);
+  if (clearBtn) clearBtn.classList.toggle(`visible`, query.length > 0);
+}
+function clearSearch() {
+  document.getElementById(`searchInput`).value = ``;
+  performSearch();
+}
+document.addEventListener(`DOMContentLoaded`, function() {
+  var searchInput = document.getElementById(`searchInput`);
+  if (searchInput) {
+    searchInput.addEventListener(`input`, performSearch);
+    searchInput.addEventListener(`keyup`, function(e) { if (e.key === `Enter`) performSearch(); });
+  }
+});
+</script>
+</body>
+</html>

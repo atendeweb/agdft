@@ -1,0 +1,23 @@
+git.js
+*.js
+# Ignorar arquivos temporários
+*.tmp
+*.log
+.DS_Store
+
+# Ignorar pastas de sistema
+Thumbs.db
+*.js
+git.js
+sincronizar.js
+
+node_modules/
+xtts-api-server/
+
+tts/
+venv/
+__pycache__/
+*.pyc
+.env
+backup_*/
+oldsite/

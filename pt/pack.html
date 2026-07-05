@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Pacote Copa do Mundo — Artes Premium para Bares e Estabelecimentos</title>
+<meta name="description" content="Artes premium para divulgar os jogos da Copa do Mundo no seu bar ou estabelecimento. Pacote completo, pronto para imprimir e postar.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+
+  :root{
+    --bg:#0A0A0C;
+    --bg-soft:#13110D;
+    --line:#241F16;
+    --ivory:#F1EDE3;
+    --ivory-dim:#B8B2A4;
+    --gold-1:#D4AF37;
+    --gold-2:#F4D976;
+    --bronze:#8B7355;
+    --green-ok:#2E8B57;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--ivory);
+    font-family:'Inter',sans-serif;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px;}
+
+  .mono{font-family:'Space Mono',monospace;}
+  .display{font-family:'Bebas Neue',sans-serif;letter-spacing:0.02em;}
+
+  a{color:inherit;text-decoration:none;}
+
+  /* ===== Texture / grain backdrop ===== */
+  body::before{
+    content:"";
+    position:fixed;inset:0;
+    background:
+      radial-gradient(ellipse 900px 600px at 50% -10%, rgba(212,175,55,0.10), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 90% 30%, rgba(212,175,55,0.05), transparent 60%);
+    pointer-events:none;
+    z-index:0;
+  }
+
+  /* ===== Header ===== */
+  header{
+    position:relative;
+    z-index:5;
+    padding:22px 0;
+    border-bottom:1px solid var(--line);
+  }
+  header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;}
+  .brand{
+    display:flex;align-items:center;gap:10px;
+    font-family:'Bebas Neue',sans-serif;
+    font-size:22px;
+    letter-spacing:0.04em;
+  }
+  .brand .dot{
+    width:9px;height:9px;border-radius:50%;
+    background:linear-gradient(135deg,var(--gold-2),var(--gold-1));
+    box-shadow:0 0 10px rgba(212,175,55,0.7);
+  }
+  .lang-badge{
+    display:flex;align-items:center;gap:8px;
+    border:1px solid var(--line);
+    background:var(--bg-soft);
+    border-radius:30px;
+    padding:6px 14px 6px 10px;
+    font-size:13px;
+    font-family:'Space Mono',monospace;
+    color:var(--ivory-dim);
+  }
+  .flag-chip{
+    width:22px;height:22px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(135deg,var(--gold-1),var(--bronze));
+    font-size:12px;
+    font-family:'Space Mono',monospace;
+    font-weight:700;
+    color:#1A1305;
+  }
+
+  /* ===== Hero ===== */
+  .hero{
+    position:relative;z-index:2;
+    padding:90px 0 60px;
+    text-align:center;
+  }
+  .hero .eyebrow{
+    display:inline-flex;align-items:center;gap:10px;
+    font-family:'Space Mono',monospace;
+    font-size:12px;letter-spacing:0.18em;text-transform:uppercase;
+    color:var(--gold-2);
+    border:1px solid rgba(212,175,55,0.35);
+    padding:7px 16px;border-radius:30px;
+    background:rgba(212,175,55,0.06);
+    margin-bottom:28px;
+  }
+  .hero h1{
+    font-family:'Bebas Neue',sans-serif;
+    font-size:clamp(40px,7vw,84px);
+    line-height:1.02;
+    letter-spacing:0.01em;
+    background:linear-gradient(180deg,#FFFDF6 10%, var(--gold-2) 55%, var(--gold-1) 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    max-width:920px;margin:0 auto;
+  }
+  .hero p.sub{
+    max-width:560px;margin:22px auto 0;
+    color:var(--ivory-dim);
+    font-size:17px;line-height:1.6;
+  }
+
+  /* Trophy-of-light signature */
+  .trophy-glow{
+    position:relative;
+    width:260px;height:260px;
+    margin:46px auto 10px;
+  }
+  .trophy-glow svg{width:100%;height:100%;display:block;}
+  .trophy-glow .ring{
+    position:absolute;inset:0;
+    border-radius:50%;
+    border:1px solid rgba(212,175,55,0.25);
+    animation:spin 22s linear infinite;
+  }
+  .trophy-glow .ring2{
+    position:absolute;inset:18px;
+    border-radius:50%;
+    border:1px dashed rgba(212,175,55,0.18);
+    animation:spin 30s linear infinite reverse;
+  }
+  @keyframes spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+
+  .hero-cta{
+    margin-top:38px;
+    display:flex;flex-direction:column;align-items:center;gap:14px;
+  }
+  .btn-gold{
+    display:inline-flex;align-items:center;gap:10px;
+    background:linear-gradient(135deg,var(--gold-2),var(--gold-1));
+    color:#1A1305;
+    font-weight:700;font-size:16px;
+    padding:17px 38px;border-radius:10px;
+    box-shadow:0 12px 30px -8px rgba(212,175,55,0.55);
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .btn-gold:hover{transform:translateY(-2px);box-shadow:0 16px 36px -8px rgba(212,175,55,0.7);}
+  .hero-cta .micro{font-size:12px;color:var(--ivory-dim);font-family:'Space Mono',monospace;}
+
+  /* ===== Social proof flags strip ===== */
+  .flags-strip{
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    padding:22px 0;
+    position:relative;z-index:2;
+  }
+  .flags-strip .wrap{
+    display:flex;justify-content:center;align-items:center;gap:34px;flex-wrap:wrap;
+    color:var(--ivory-dim);font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.08em;
+  }
+  .flags-strip span.tag{color:var(--gold-2);}
+
+  /* ===== Gallery (flyer mockups) ===== */
+  .gallery{padding:100px 0 30px;position:relative;z-index:2;}
+  .section-head{text-align:center;max-width:640px;margin:0 auto 56px;}
+  .section-head .kicker{
+    font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.18em;
+    text-transform:uppercase;color:var(--bronze);margin-bottom:14px;display:block;
+  }
+  .section-head h2{
+    font-family:'Bebas Neue',sans-serif;
+    font-size:clamp(30px,4vw,46px);
+    color:var(--ivory);
+    line-height:1.1;
+  }
+  .section-head p{color:var(--ivory-dim);margin-top:14px;font-size:15.5px;line-height:1.6;}
+
+  .grid-flyers{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+  }
+  .flyer-card{
+    border-radius:14px;
+    overflow:hidden;
+    border:1px solid var(--line);
+    background:var(--bg-soft);
+    aspect-ratio:4/5;
+    position:relative;
+  }
+  .flyer-card img{width:100%;height:100%;object-fit:cover;display:block;}
+  .flyer-card .tagcard{
+    position:absolute;bottom:10px;left:10px;
+    background:rgba(10,10,12,0.75);
+    border:1px solid rgba(212,175,55,0.3);
+    color:var(--gold-2);
+    font-family:'Space Mono',monospace;
+    font-size:11px;padding:4px 10px;border-radius:20px;
+  }
+
+  /* ===== What's included ===== */
+  .included{padding:110px 0;position:relative;z-index:2;}
+  .inc-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:28px;
+  }
+  .inc-card{
+    border:1px solid var(--line);
+    background:linear-gradient(180deg,rgba(212,175,55,0.04),transparent);
+    border-radius:16px;padding:30px 26px;
+  }
+  .inc-card .num{
+    font-family:'Bebas Neue',sans-serif;
+    font-size:42px;color:var(--gold-1);opacity:.8;line-height:1;
+  }
+  .inc-card h3{font-size:17px;margin:14px 0 8px;font-weight:700;}
+  .inc-card p{font-size:14.5px;color:var(--ivory-dim);line-height:1.55;}
+
+  /* ===== Pricing — scoreboard ===== */
+  .pricing{padding:80px 0 130px;position:relative;z-index:2;}
+  .price-card{
+    max-width:480px;margin:0 auto;
+    border:1px solid rgba(212,175,55,0.3);
+    border-radius:22px;
+    background:linear-gradient(180deg, rgba(212,175,55,0.07), rgba(10,10,12,0.4));
+    padding:46px 40px 40px;
+    text-align:center;
+    position:relative;
+    box-shadow:0 30px 80px -30px rgba(0,0,0,0.7);
+  }
+  .price-card::before{
+    content:"";
+    position:absolute;inset:-1px;
+    border-radius:22px;
+    background:linear-gradient(135deg,var(--gold-2),transparent 40%,transparent 60%,var(--gold-1));
+    opacity:0.35;z-index:-1;
+  }
+  .price-card .country-flag{
+    width:46px;height:46px;border-radius:50%;
+    margin:0 auto 18px;
+    background:linear-gradient(135deg,var(--gold-1),var(--bronze));
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Space Mono',monospace;font-weight:700;font-size:13px;color:#1A1305;
+  }
+  .price-card h3{
+    font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:0.02em;margin-bottom:6px;
+  }
+  .price-card .plan-sub{color:var(--ivory-dim);font-size:13.5px;margin-bottom:26px;}
+  .scoreboard{
+    font-family:'Bebas Neue',sans-serif;
+    font-size:64px;
+    color:var(--ivory);
+    letter-spacing:0.01em;
+    line-height:1;
+    margin-bottom:6px;
+    animation:flicker-in .6s ease both;
+  }
+  .scoreboard sup{font-size:24px;vertical-align:super;color:var(--gold-2);}
+  @keyframes flicker-in{
+    0%{opacity:0;letter-spacing:0.3em;filter:blur(4px);}
+    100%{opacity:1;letter-spacing:0.01em;filter:blur(0);}
+  }
+  .price-card .price-note{
+    font-family:'Space Mono',monospace;font-size:12px;color:var(--bronze);
+    margin-bottom:30px;
+  }
+  .price-card ul{list-style:none;text-align:left;margin-bottom:32px;display:inline-block;}
+  .price-card ul li{
+    font-size:14.5px;color:var(--ivory-dim);
+    padding:9px 0;border-bottom:1px solid var(--line);
+    display:flex;align-items:center;gap:10px;
+  }
+  .price-card ul li:last-child{border-bottom:none;}
+  .check{
+    width:16px;height:16px;border-radius:50%;
+    background:rgba(212,175,55,0.15);
+    color:var(--gold-2);
+    display:flex;align-items:center;justify-content:center;
+    font-size:10px;flex-shrink:0;
+  }
+  .price-card .btn-gold{width:100%;justify-content:center;font-size:17px;}
+  .secure-note{
+    margin-top:16px;font-size:12px;color:var(--ivory-dim);
+    font-family:'Space Mono',monospace;
+  }
+
+  .switch-lang{
+    text-align:center;margin-top:30px;
+    font-size:13px;color:var(--ivory-dim);
+  }
+
+  /* ===== FAQ ===== */
+  .faq{padding:0 0 120px;position:relative;z-index:2;}
+  .faq-item{
+    border-bottom:1px solid var(--line);
+    padding:24px 0;
+  }
+  .faq-item summary{
+    cursor:pointer;font-weight:600;font-size:16px;
+    display:flex;justify-content:space-between;align-items:center;
+    list-style:none;
+  }
+  .faq-item summary::-webkit-details-marker{display:none;}
+  .faq-item summary .ic{color:var(--gold-2);font-family:'Bebas Neue',sans-serif;font-size:20px;}
+  .faq-item p{margin-top:14px;color:var(--ivory-dim);font-size:14.5px;line-height:1.6;max-width:680px;}
+
+  /* ===== Footer ===== */
+  footer{
+    border-top:1px solid var(--line);
+    padding:40px 0;
+    text-align:center;
+    color:var(--ivory-dim);
+    font-size:13px;
+    position:relative;z-index:2;
+  }
+  footer .dot-sep{color:var(--bronze);margin:0 8px;}
+
+  /* ===== Responsive ===== */
+  @media (max-width:860px){
+    .grid-flyers{grid-template-columns:repeat(2,1fr);}
+    .inc-grid{grid-template-columns:1fr;}
+  }
+  @media (max-width:560px){
+    .grid-flyers{grid-template-columns:repeat(2,1fr);gap:10px;}
+    .hero{padding:64px 0 40px;}
+    .price-card{padding:36px 22px 30px;}
+    .scoreboard{font-size:50px;}
+    header .wrap{flex-direction:row;}
+    .lang-badge{padding:5px 10px 5px 5px;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important;transition:none !important;}
+  }
+
+  :focus-visible{outline:2px solid var(--gold-2);outline-offset:3px;}
+
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="brand"><span class="dot"></span> AGENDA<span style="color:var(--gold-2)">FUT</span></div>
+    <div class="lang-badge">
+      <span class="flag-chip">PT</span>
+      <span>PT</span>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow">⚽ Edição Copa do Mundo</span>
+    <h1>Artes premium que enchem seu bar a cada jogo</h1>
+    <p class="sub">Pacote completo de flyers prontos para postar e imprimir. Anuncie a agenda dos jogos com um visual profissional, sem precisar contratar designer.</p>
+
+    <div class="trophy-glow" aria-hidden="true">
+      <div class="ring"></div>
+      <div class="ring2"></div>
+      <svg viewBox="0 0 200 200">
+        <defs>
+          <linearGradient id="goldGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#F4D976"/>
+            <stop offset="100%" stop-color="#D4AF37"/>
+          </linearGradient>
+          <filter id="glow"><feGaussianBlur stdDeviation="4"/></filter>
+        </defs>
+        <circle cx="100" cy="100" r="46" fill="url(#goldGrad)" opacity="0.18" filter="url(#glow)"/>
+        <path d="M75 60 H125 V78 C125 96 113 108 100 108 C87 108 75 96 75 78 Z" fill="url(#goldGrad)"/>
+        <path d="M75 64 C60 64 56 78 64 86 C68 90 73 90 75 88" stroke="url(#goldGrad)" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <path d="M125 64 C140 64 144 78 136 86 C132 90 127 90 125 88" stroke="url(#goldGrad)" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <rect x="93" y="108" width="14" height="20" fill="url(#goldGrad)"/>
+        <rect x="80" y="128" width="40" height="8" rx="2" fill="url(#goldGrad)"/>
+        <rect x="74" y="136" width="52" height="8" rx="2" fill="url(#goldGrad)"/>
+      </svg>
+    </div>
+
+    <div class="hero-cta">
+      <a href="#oferta" class="btn-gold">Garantir pacote agora</a>
+      <span class="micro">PAGAMENTO ÚNICO · ACESSO IMEDIATO · 7 IDIOMAS</span>
+    </div>
+  </div>
+</section>
+
+<div class="flags-strip">
+  <div class="wrap">
+    <span><span class="tag">●</span> Usado por bares em 7 países</span>
+    <span class="mono">PT · EN · ES · DE · IT · FR · NL</span>
+  </div>
+</div>
+
+<section class="gallery">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">Modelos inclusos</span>
+      <h2>Designs feitos para chamar atenção na tela e na rua</h2>
+      <p>Artes editáveis em alta resolução, com a identidade visual da Copa do Mundo.</p>
+    </div>
+    <div class="grid-flyers">
+      <!-- Replace src below with your actual files in ../images/jogos/ -->
+      <div class="flyer-card"><img src="../../images/jogos/1.jpg" alt="Flyer 1" loading="lazy"><span class="tagcard">Modelo 01</span></div>
+      <div class="flyer-card"><img src="../../images/jogos/2.jpg" alt="Flyer 2" loading="lazy"><span class="tagcard">Modelo 02</span></div>
+      <div class="flyer-card"><img src="../../images/jogos/3.jpg" alt="Flyer 3" loading="lazy"><span class="tagcard">Modelo 03</span></div>
+      <div class="flyer-card"><img src="../../images/jogos/4.jpg" alt="Flyer 4" loading="lazy"><span class="tagcard">Modelo 04</span></div>
+      <div class="flyer-card"><img src="../../images/jogos/5.jpg" alt="Flyer 5" loading="lazy"><span class="tagcard">Modelo 05</span></div>
+      <div class="flyer-card"><img src="../../images/jogos/6.jpg" alt="Flyer 6" loading="lazy"><span class="tagcard">Modelo 06</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="included">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">O que está dentro do pacote</span>
+      <h2>Tudo pronto. Você só precisa postar.</h2>
+    </div>
+    <div class="inc-grid">
+      <div class="inc-card">
+        <div class="num">01</div>
+        <h3>Artes em alta resolução</h3>
+        <p>Arquivos prontos para impressão e para redes sociais, sem perda de qualidade.</p>
+      </div>
+      <div class="inc-card">
+        <div class="num">02</div>
+        <h3>Agenda dos jogos integrada</h3>
+        <p>Layouts pensados para destacar data, hora e transmissão de cada partida.</p>
+      </div>
+      <div class="inc-card">
+        <div class="num">03</div>
+        <h3>Entrega imediata</h3>
+        <p>Após a confirmação do pagamento, o acesso aos arquivos é liberado na hora.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pricing" id="oferta">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">Oferta única</span>
+      <h2>Seu pacote completo, um único pagamento</h2>
+    </div>
+
+    <div class="price-card">
+      <div class="country-flag">PT</div>
+      <h3>Pacote Copa do Mundo — Artes Premium</h3>
+      <p class="plan-sub">Versão em Português</p>
+
+      <div class="scoreboard"><sup>R$</sup>29,90</div>
+      <div class="price-note">PAGAMENTO ÚNICO · SEM MENSALIDADE</div>
+
+      <ul>
+        <li><span class="check">✓</span> Pacote completo de artes da Copa do Mundo</li>
+        <li><span class="check">✓</span> Arquivos em alta resolução, prontos para uso</li>
+        <li><span class="check">✓</span> Liberação imediata após o pagamento</li>
+        <li><span class="check">✓</span> Suporte via WhatsApp</li>
+      </ul>
+
+      <a href="https://buy.stripe.com/cNi6oJb5zgFlfTS1tIfMA00" class="btn-gold" target="_blank" rel="noopener">Comprar agora com segurança</a>
+      <div class="secure-note">🔒 PAGAMENTO PROCESSADO PELA STRIPE</div>
+    </div>
+
+    <p class="switch-lang">Detectamos seu idioma automaticamente. Para trocar, use o seletor no topo da página.</p>
+  </div>
+</section>
+
+<section class="faq">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">Perguntas frequentes</span>
+      <h2>Ainda com dúvidas?</h2>
+    </div>
+
+    <details class="faq-item" open>
+      <summary>Como recebo as artes depois de comprar? <span class="ic">+</span></summary>
+      <p>Após a confirmação do pagamento pela Stripe, você recebe o acesso aos arquivos por e-mail, prontos para baixar e usar.</p>
+    </details>
+    <details class="faq-item">
+      <summary>As artes podem ser editadas? <span class="ic">+</span></summary>
+      <p>Sim. Os arquivos permitem ajustes simples de texto e data antes de imprimir ou publicar nas redes sociais.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Funciona para qualquer país? <span class="ic">+</span></summary>
+      <p>Sim. O pacote está disponível em sete idiomas e moedas diferentes, com checkout adaptado para cada região.</p>
+    </details>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="year"></span> AgendaFut</span>
+    <span class="dot-sep">•</span>
+    <span>Todos os direitos reservados</span>
+  </div>
+</footer>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// ===== VERIFICAÇÃO DE PAGAMENTO (no index.html) =====
+(function() {
+  var urlParams = new URLSearchParams(window.location.search);
+  var paymentStatus = urlParams.get('payment');
+  var email = urlParams.get('email') || '';
+  
+  if (paymentStatus === 'success' && email) {
+    console.log('✅ Pagamento confirmado! Email:', email);
+    localStorage.setItem('paymentStatus', 'confirmed');
+    localStorage.setItem('paymentEmail', email);
+    localStorage.setItem('ofertaDesativada', 'true');
+    localStorage.setItem('popupSeen', 'true');
+    
+    // Salva o email se não tiver
+    if (!localStorage.getItem('leadEmail')) {
+      localStorage.setItem('leadEmail', email);
+    }
+    
+    // Remove os parâmetros da URL
+    if (window.history && window.history.replaceState) {
+      var cleanUrl = window.location.pathname;
+      window.history.replaceState({}, document.title, cleanUrl);
+    }
+    
+    // Redireciona para download.html
+    setTimeout(function() {
+      var langMatch = window.location.pathname.match(/\/(en|pt|es|de|it|fr|ar)\//);
+      var lang = langMatch ? langMatch[1] : 'pt';
+      window.location.href = '/' + lang + '/download.html';
+    }, 2000);
+  }
+})();
+
+(function() {
+  var params = window.location.search; // ex: "?payment=success"
+  if (params.indexOf('payment=success') !== -1) {
+    // redireciona pro download.html levando o parâmetro junto
+    window.location.href = 'download.html' + params;
+  }
+})();
+
+</script>
+
+</body>
+</html>
