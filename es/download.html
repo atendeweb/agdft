@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta name="robots" content="noindex">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Calendario de la Copa Mundial 2026 - Mira Todos los Partidos</title>
@@ -286,7 +285,7 @@ function checkPayment() {
 function redirectToIndex() {
   var currentPath = window.location.pathname;
   var parts = currentPath.split(`/`);
-  parts[parts.length - 1] = `pack.html`;
+  parts[parts.length - 1] = `index.html`;
   window.location.href = parts.join(`/`);
 }
 function handleZoomClick(src, alt, index) {
