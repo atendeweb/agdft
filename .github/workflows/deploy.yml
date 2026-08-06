@@ -1,0 +1,84 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: ["main", "master"]
+  schedule:
+    - cron: '0 0 * * *'  # Roda todo dia à meia-noite
+  workflow_dispatch:  # Permite rodar manualmente
+
+permissions:
+  contents: write  # Precisa para commitar o sitemap
+  pages: write
+  id-token: write
+
+# 🔥 Cancela builds anteriores automaticamente
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    
+    steps:
+      # PASSO 1: Checkout do código
+      - name: Checkout do código
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Necessário para o sitemap
+
+      # PASSO 2: Gerar sitemap.xml
+      - name: Gerar sitemap.xml
+        uses: cicirello/generate-sitemap@v1
+        with:
+          base-url-path: https://agendafut.online/
+          default-changefreq: weekly
+          default-priority: 0.8
+          exclude-paths: |
+            /ar/
+            /nl/
+          exclude-files: |
+            pt/download.html
+            en/download.html
+            es/download.html
+            de/download.html
+            fr/download.html
+            it/download.html
+            no/download.html
+            404.html
+            .nojekyll
+            .gitignore
+            README.md
+
+      # PASSO 3: Commitar sitemap (se houver mudanças)
+      - name: Commitar sitemap
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add sitemap.xml
+          if git diff --staged --quiet; then
+            echo "📭 Sitemap sem alterações, pulando commit"
+          else
+            echo "📝 Sitemap alterado, fazendo commit..."
+            git commit -m "chore: atualizar sitemap.xml [skip ci]"
+            git push
+          fi
+
+      # PASSO 4: Setup Pages
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      # PASSO 5: Upload do site
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+
+      # PASSO 6: Deploy para GitHub Pages (SEMPRE executa)
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
